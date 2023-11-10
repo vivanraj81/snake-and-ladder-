@@ -8,7 +8,7 @@ var nickname1 ;
 var nickname2 ;
 // var tog2 = document.getElementById('tog2')
 
-let backgroundSound = new Audio("./assets/bgmusic.mp3")
+let backgroundSound = new Audio("assets/bgmusic.mp3")
 backgroundSound.play()
 backgroundSound.loop = true
 
