@@ -93,12 +93,13 @@
     width: 50px;
     height: 50px;
     border-radius: 100px;
-    background-color: rgb(41, 44, 212);
+    /* background-color: rgb(82, 105, 236); */
     position: relative;
     border: 3px solid black;
   }
   
   #p1 {
+    background-color: rgb(82, 105, 236);
     position: relative;
     top: 0px;
     transition: all linear 0.5s;
@@ -112,7 +113,7 @@
     top: -55px;
     left: -62px;
     transition: all linear 0.5s;
-    background-color: rgb(46, 236, 243);
+    background-color: rgb(52, 243, 46);
   }
   
   .board {
@@ -143,15 +144,6 @@
     color: white;
   }
 
-
-  /* #diceBtn {
-    z-index: 99;
-    padding: 5px;
-    cursor: pointer;
-    background-color: rgb(75, 140, 197);
-    border-radius: 5px;
-    width: 200px;
-  } */
   
   @media (max-width: 425px) {
     #PLAYER2 {

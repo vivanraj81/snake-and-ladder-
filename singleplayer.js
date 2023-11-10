@@ -2,31 +2,25 @@ let tog = 2
 var score1 = document.getElementById('score1')
 var score2 = document.getElementById('score2')
 const tog1 = document.getElementById('nickname1')
-var tog2 = document.getElementById('nickname2')
 var wontext = document.getElementById('wontext')
 var nickname1 ;
+let num2;
 var nickname2 ;
-// var tog2 = document.getElementById('tog2')
+const audio = document.getElementById('');
 
 let backgroundSound = new Audio("./assets/bgmusic.mp3")
 backgroundSound.play()
 backgroundSound.loop = true
 
-
 document.addEventListener("DOMContentLoaded", function() {
 //     // Your code here
-    document.getElementById("Startbtn").addEventListener("click", function (){
+    document.getElementById("Startbtn").addEventListener("click", function () {
         let Nickname1 = document.querySelector("#name1").value;
         console.log(Nickname1);
-        window.location.href = "game.html";
-
-        let Nickname2 = document.querySelector("#name2").value;
-        console.log(Nickname2);
+        window.location.href = "singleplayer.html";
 
         localStorage.setItem("Nickname1", Nickname1);
-        localStorage.setItem("Nickname2", Nickname2);
-
-        let gg = localStorage.getItem("Nickname1");
+        localStorage.setItem("Nickname2", "Computer");
 
 
     });
@@ -36,7 +30,7 @@ const play1name = localStorage.getItem("Nickname1")
 const play2name = localStorage.getItem("Nickname2")
 
 tog1.innerText = play1name ;
-// tog2.innerText = play2name ;
+
 
 
 let p1sum = 0
@@ -102,7 +96,7 @@ function play(player, psum, correction, num) {
 
         sum = p1sum
 
-        score2.innerText = "SCORE:-" + p1sum;
+        score1.innerText = "SCORE:-" + p1sum;
 
 
     }
@@ -111,10 +105,10 @@ function play(player, psum, correction, num) {
 
     if (psum == 'p2sum') {
 
-        p2sum = p2sum + num
+        p2sum = p2sum + num2
 
         if (p2sum > 100) {
-            p2sum = p2sum - num
+            p2sum = p2sum - num2
             // sum = p1sum
         }
         
@@ -168,7 +162,7 @@ function play(player, psum, correction, num) {
         sum = p2sum
 
         // score1.innerText = "SCORE:-" + sum;
-        score1.innerText = "SCORE:- " + p2sum;
+        score2.innerText = "SCORE:- " + p2sum;
 
     }
     document.getElementById(`${player}`).style.transition = `linear all .90s`
@@ -186,9 +180,8 @@ function play(player, psum, correction, num) {
             location.href = "./gameover.html";
             localStorage.setItem("win", play2name);
         }
-    }else{
-             
-        numarr = Array.from(String(sum))
+    }else {
+             numarr = Array.from(String(sum))
         n1 = parseInt(numarr.shift())
         n2 = parseInt(numarr.pop())
         // console.log(n1, n2)
@@ -227,7 +220,6 @@ function play(player, psum, correction, num) {
 
 var diceBtn2 = document.getElementById("diceBtn2");
 document.getElementById("diceBtn").addEventListener("click", function () {
-    // dice.play();
     num = Math.floor(Math.random() *6+1)
    var die = document.getElementById("dice")
     
@@ -264,58 +256,58 @@ document.getElementById("diceBtn").addEventListener("click", function () {
         diceBtn.style.visibility = "hidden";
         diceBtn2.style.visibility = "visible";
 
-        play('p2', 'p2sum', 55, num)
+        setTimeout(function () {
+            diceBtn2.style.visibility = "visible";
+            play('p2', 'p2sum', 55, num2);
+        }, 1000); // 1000 milliseconds (1 second) delay
     }
-
     tog = tog + 1
 
+    rollDice() 
 
 
 })
 
+// if(tog % 2 == 0){
 
-document.getElementById("diceBtn2").addEventListener("click", function () {
-    // dice.play();
-    num = Math.floor(Math.random() *6+1)
-   var die = document.getElementById("dice")
-    
-   switch(num){
-    case 1:
-        die.setAttribute("src", "./Assets/dice1.png");
-        break
-    case 2:
-        die.setAttribute("src", "./Assets/dice2.png");
-        break
-    case 3:
-        die.setAttribute("src", "./Assets/dice3.png");
-        break
-    case 4:
-        die.setAttribute("src", "./Assets/dice4.png");
-        break
-    case 5:
-         die.setAttribute("src", "./Assets/dice5.png");
-        break
-    case 6:
-         die.setAttribute("src", "./Assets/dice6.png");
-         break
-  }
+function rollDice() {
+    num2 = Math.floor(Math.random() * 6 + 1);
+    var die = document.getElementById("dice");
 
-  if(tog==0){
-    diceBtn2.style.visibility = "hidden";
-    diceBtn.style.visibility = "visible";
- }else if (tog % 2 != 0) {
+    switch (num2) {
+        case 1:
+            die.setAttribute("src", "./Assets/dice1.png");
+            break;
+        case 2:
+            die.setAttribute("src", "./Assets/dice2.png");
+            break;
+        case 3:
+            die.setAttribute("src", "./Assets/dice3.png");
+            break;
+        case 4:
+            die.setAttribute("src", "./Assets/dice4.png");
+            break;
+        case 5:
+            die.setAttribute("src", "./Assets/dice5.png");
+            break;
+        case 6:
+            die.setAttribute("src", "./Assets/dice6.png");
+            break;
+    }
+
+    if (tog == 0) {
         diceBtn2.style.visibility = "hidden";
         diceBtn.style.visibility = "visible";
-        play('p1', 'p1sum', 0, num)
-    }
-    else if (tog % 2 == 0) {
+    } else if (tog % 2 != 0) {
+        diceBtn2.style.visibility = "hidden";
+        diceBtn.style.visibility = "visible";
+        play('p1', 'p1sum', 0, num);
+    } else if (tog % 2 == 0) {
         diceBtn.style.visibility = "hidden";
         diceBtn2.style.visibility = "visible";
-        play('p2', 'p2sum', 55, num)
+        play('p2', 'p2sum', 55, num2);
     }
 
-    tog = tog + 1
-
-
-
-})
+    tog = tog + 1;
+ }
+// }
