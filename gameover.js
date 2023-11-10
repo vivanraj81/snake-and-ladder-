@@ -1,7 +1,7 @@
 let wontext = document.getElementById('wontext');
 let playagain = document.getElementById('playagain');
 
-let backgroundSound = new Audio("./assets/bgmusic.mp3")
+let backgroundSound = new Audio("assets/bgmusic.mp3")
 backgroundSound.play()
 backgroundSound.loop = true
 
