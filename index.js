@@ -36,7 +36,7 @@ const play1name = localStorage.getItem("Nickname1")
 const play2name = localStorage.getItem("Nickname2")
 
 tog1.innerText = play1name ;
-// tog2.innerText = play2name ;
+tog2.innerText = play2name ;
 
 
 let p1sum = 0
